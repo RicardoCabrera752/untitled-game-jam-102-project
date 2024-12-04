@@ -35,6 +35,8 @@ public partial class UIManager : Control
 	public bool ShowOptionsScreen = false;
 	public bool ShowCreditsScreen = false;
 
+	// Last Shopkeeper Greeting text
+	public string lastShopkeeperText = "";
 
 	// Access to the GameData variables
 	private GameData _gameData;
@@ -75,7 +77,8 @@ public partial class UIManager : Control
 				GetNode<CanvasLayer>("PauseMenuUI/AbandonGameUI").Hide();
 				//GetNode<Control>("PauseMenuUI/AbandonGameUI").Hide();
 				
-			}else 
+			}
+			else 
 			{
 				GetTree().Paused = false;
 
@@ -103,8 +106,15 @@ public partial class UIManager : Control
 
 				GetNode<CanvasLayer>("InventoryUI").Hide();
 
-				//GetNode<Button>("MenuBarUI/OpenShopButton").Disabled = true;
-			}else if (_gameData.IsGameInProgress && !_gameData.IsGameLost && !_gameData.IsGameWon && !_gameData.IsGamePaused && _gameData.IsShopOpen)
+				// Generate Random Greeting Text
+				var randomText = GetRandomShopkeeperText("Greeting");
+				GD.Print(randomText);
+
+				// Replace Shopkeeper Text Box
+				GetNode<Label>("ShopUI/ShopKeeperTextBoxContainer/ShopKeeperTextBox").Text = randomText;
+
+			}
+			else if (_gameData.IsGameInProgress && !_gameData.IsGameLost && !_gameData.IsGameWon && !_gameData.IsGamePaused && _gameData.IsShopOpen)
 			{
 				GetNode<CanvasLayer>("ShopUI").Hide();
 				_gameData.IsShopOpen = false;
@@ -323,7 +333,7 @@ public partial class UIManager : Control
 
 	}
 
-	// Pause Menu Buttons
+	// Pause Menu
 	// Handle Pause Menu Button being pressed
 	private void OnPauseGameButtonPressed()
 	{
@@ -410,7 +420,7 @@ public partial class UIManager : Control
 	}
 
 
-	// Shop Menu Buttons
+	// Shop Menu
 	// Handle Shop Menu Button being pressed
 	private void OnOpenShopButtonPressed()
 	{
@@ -421,11 +431,94 @@ public partial class UIManager : Control
 
 			GetNode<CanvasLayer>("InventoryUI").Hide();
 
-			//GetNode<Button>("MenuBarUI/OpenShopButton").Disabled = true;
-		}else if (_gameData.IsGameInProgress && !_gameData.IsGameLost && !_gameData.IsGameWon && !_gameData.IsGamePaused && _gameData.IsShopOpen)
+			// Generate Random Greeting Text
+			var randomText = GetRandomShopkeeperText("Greeting");
+			GD.Print(randomText);
+
+			// Replace Shopkeeper Text Box
+			GetNode<Label>("ShopUI/ShopKeeperTextBoxContainer/ShopKeeperTextBox").Text = randomText;
+
+		}
+		else if (_gameData.IsGameInProgress && !_gameData.IsGameLost && !_gameData.IsGameWon && !_gameData.IsGamePaused && _gameData.IsShopOpen)
 		{
 			GetNode<CanvasLayer>("ShopUI").Hide();
 			_gameData.IsShopOpen = false;
 		}
 	}
+
+	// Handle Shop Lore button being pressed
+	private void OnLoreButtonPressed()
+	{
+		// Generate Random Greeting Text
+		var randomText = GetRandomShopkeeperText("Lore");
+		GD.Print(randomText);
+
+		// Replace Shopkeeper Text Box
+		GetNode<Label>("ShopUI/ShopKeeperTextBoxContainer/ShopKeeperTextBox").Text = randomText;
+	}
+
+	// Handle Shop Advice button being pressed
+	private void OnAdviceButtonPressed()
+	{
+		// Generate Random Greeting Text
+		var randomText = GetRandomShopkeeperText("Advice");
+		GD.Print(randomText);
+
+		// Replace Shopkeeper Text Box
+		GetNode<Label>("ShopUI/ShopKeeperTextBoxContainer/ShopKeeperTextBox").Text = randomText;
+	}
+
+	// Method for generating random Shopkeeper text
+	private string GetRandomShopkeeperText(string textRequestType)
+	{
+		string randomText = "";
+		//string lastText = "";
+		int size;
+
+		// Generate Random Text
+		if (textRequestType == "Greeting")
+		{
+			size = _gameData.ShopkeeperGreetingText.Count;
+			randomText = _gameData.ShopkeeperGreetingText[(int)(GD.Randi() % size)];
+
+			while (randomText == lastShopkeeperText)
+			{
+				randomText = _gameData.ShopkeeperGreetingText[(int)(GD.Randi() % size)];
+			}
+
+			lastShopkeeperText = randomText;
+			
+		} 
+		else if (textRequestType == "Advice")
+		{
+			size = _gameData.ShopkeeperAdviceText.Count;
+			randomText = _gameData.ShopkeeperAdviceText[(int)(GD.Randi() % size)];
+
+			while (randomText == lastShopkeeperText)
+			{
+				randomText = _gameData.ShopkeeperAdviceText[(int)(GD.Randi() % size)];
+			}
+
+			lastShopkeeperText = randomText;
+		}
+		else if (textRequestType == "Lore")
+		{
+			size = _gameData.ShopkeeperLoreText.Count;
+			randomText = _gameData.ShopkeeperLoreText[(int)(GD.Randi() % size)];
+
+			while (randomText == lastShopkeeperText)
+			{
+				randomText = _gameData.ShopkeeperLoreText[(int)(GD.Randi() % size)];
+			}
+
+			lastShopkeeperText = randomText;
+		}
+
+		// Generate Random Advice Text
+
+		// Generate Random Lore Text
+
+		return randomText;
+	}
+
 }

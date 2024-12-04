@@ -1577,10 +1577,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = 169.0
-offset_right = -280.0
-offset_bottom = 329.0
+offset_left = -408.0
+offset_top = 190.0
+offset_right = -288.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("PlaceholderTexture2D_fp1lx")
@@ -1973,10 +1973,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = 192.0
-offset_right = -140.0
-offset_bottom = 232.0
+offset_left = -184.0
+offset_top = 230.0
+offset_right = -144.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -2048,9 +2048,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -232.0
-offset_top = 47.0
+offset_top = 63.0
 offset_right = -192.0
-offset_bottom = 87.0
+offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -2061,10 +2061,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = -60.0
-offset_right = 180.0
-offset_bottom = 60.0
+offset_left = -200.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -2076,13 +2076,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -33.0
-offset_right = 157.0
-offset_bottom = 42.0
+offset_left = -180.0
+offset_top = -80.0
+offset_right = 180.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Fighter class minions are general purpose units. They are good at taking and dealing damage. You should prioritize placing them in the first row!"
+text = "Your minions have the ability to shapeshift! A minion can change to another minion of the same Soul type and Tier. For example, a Tier II Nature minion can change to any Tier II Nature minion regardless of Class type."
 autowrap_mode = 2
 
 [node name="PauseMenuUI" type="CanvasLayer" parent="."]
@@ -2312,6 +2312,8 @@ text = "5/5"
 [connection signal="value_changed" from="OptionsUI/SoundEffectsVolumeSlider" to="." method="OnSoundEffectsVolumeSliderValueChanged"]
 [connection signal="pressed" from="OptionsUI/CloseOptions" to="." method="OnCloseOptionsPressed"]
 [connection signal="pressed" from="BackButtonUI/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="ShopUI/ShopKeeperContainer/LoreButton" to="." method="OnLoreButtonPressed"]
+[connection signal="pressed" from="ShopUI/ShopKeeperContainer/AdviceButton" to="." method="OnAdviceButtonPressed"]
 [connection signal="pressed" from="PauseMenuUI/ResumeGameButton" to="." method="OnResumeGameButtonPressed"]
 [connection signal="pressed" from="PauseMenuUI/PauseMenuControlsButton" to="." method="OnPauseMenuControlsButtonPressed"]
 [connection signal="pressed" from="PauseMenuUI/PauseMenuOptionsButton" to="." method="OnPauseMenuOptionsButtonPressed"]

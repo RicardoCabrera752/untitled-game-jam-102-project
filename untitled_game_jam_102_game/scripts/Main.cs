@@ -45,6 +45,9 @@ public partial class Main : Node
 		GetNode<HSlider>("UIManager/OptionsUI/MusicVolumeSlider").Value = MusicVolume;
 		GetNode<HSlider>("UIManager/OptionsUI/SoundEffectsVolumeSlider").Value = SFXVolume;
 
+		// Initialize Shopkeeper Text
+		_gameData.InitializeShopkeeperText();
+
 		// Play the Main Menu Music
 		GetNode<AudioStreamPlayer>("AudioManager/MainMenuMusic").Play();
 

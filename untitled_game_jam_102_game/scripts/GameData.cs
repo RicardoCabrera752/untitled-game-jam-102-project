@@ -9,7 +9,7 @@ public partial class GameData : Node
 
 	// Initial Volume Slider Values
 	public float MasterVolume { get; set; } = 0.75f;
-	public float MusicVolume { get; set; } = 0.5f;
+	public float MusicVolume { get; set; } = 0.0f;
 	public float SFXVolume { get; set; } = 0.65f;
 
 	// Game Variables
@@ -28,10 +28,14 @@ public partial class GameData : Node
 	// Is the shop open
 	public bool IsShopOpen { get; set; } = false;
 
+
+	// Shop Metadata
+	// Shopkeeper Greeting Text
+	public List<string> ShopkeeperGreetingText = new List<string>();
 	// Shopkeeper Lore Text
-	public List<string> ShopLoreText = new List<string>();
+	public List<string> ShopkeeperLoreText = new List<string>();
 	// Shopkeeper Advice Text
-	public List<string> ShopAdviceText = new List<string>();
+	public List<string> ShopkeeperAdviceText = new List<string>();
 	
 
 	// Battle Metadata
@@ -46,13 +50,15 @@ public partial class GameData : Node
 	// Has the GameMapWorld been killed
 	public bool IsGameMapWorldDead { get; set; } = false;
 	//
-	public bool IsMainMenuWorldAlive { get; set; } = true;
+	//public bool IsMainMenuWorldAlive { get; set; } = true;
 
 	// Player Metadata
 	// Amount of Runes the Player has currently
 	public int CurrentPlayerRunes { get; set; } = 0;
 	// Amount of Mana Cores the Player has currently
 	public int CurrentManaCores { get; set; } = 0;
+	// Amount of Morph Slime the Player has currently
+	public int CurrentMorphSlime { get; set; } = 0;
 
 	// Dictionary of all Units the player has
 	//public IDictionary<string, Unit> UnitList { get; set; } = new Dictionary<string, Unit>();
@@ -64,6 +70,8 @@ public partial class GameData : Node
 	// Amount of runes collected
 	// Amount of player units lost
 
+	// Methods
+	// Method to reset all game variables to default values
 	public void ResetAllGameVariables()
 	{
 		// General Metadata
@@ -85,8 +93,87 @@ public partial class GameData : Node
 		// Player Metadata
 		CurrentPlayerRunes = 0;
 		CurrentManaCores = 0;
+		CurrentMorphSlime = 0;
 
 	}
+
+	// Method to initialize the Shopkeeper text lists
+	public void InitializeShopkeeperText()
+	{
+		// Greeting text options
+		ShopkeeperGreetingText.Add
+		(
+			"Welcome to my shop stranger. I sell only the finest wares."
+		);
+
+		ShopkeeperGreetingText.Add
+		(
+			"Greetings stranger. Looking to spend your runes?"
+		);
+
+		ShopkeeperGreetingText.Add
+		(
+			"Hello stranger. Please feel free to browse my merchandise."
+		);
+
+		// Advice text options
+		ShopkeeperAdviceText.Add
+		(
+			"Fighter class minions are general purpose units. They are good at taking and dealing damage. You should prioritize placing them in the first row to form a strong frontline."
+		);
+
+		ShopkeeperAdviceText.Add
+		(
+			"Rogue class minions are agile raid units. They trade defense for improved initiative, critical hit chance, and evasion. Use them to take out high priority targets or to perform devastating first strikes."
+		);
+
+		ShopkeeperAdviceText.Add
+		(
+			"Caster class minions are powerful support units. They have access to a wide array of offensive and defensive spells. Place them in the last row to keep them safe from enemy melee attacks."
+		);
+
+		ShopkeeperAdviceText.Add
+		(
+			"Fusion class minions are formed by combining two Tier III minions. Their abilities depend on the Soul type of the minions that were combined. They can use Tier V spells and skills to obliterate enemies!"
+		);
+
+		ShopkeeperAdviceText.Add
+		(
+			"Your minions have the ability to shapeshift! A minion can change to another minion of the same Soul type and Tier. For example, a Tier II Nature minion can change to any Tier II Nature minion regardless of Class type."
+		);
+
+		ShopkeeperAdviceText.Add
+		(
+			"After you win a battle, all of the dead minions in your party will be revived. This only applies if Minion Permadeath is disabled."
+		);
+
+		// Lore text options
+		ShopkeeperLoreText.Add
+		(
+			"Nature lore"
+		);
+
+		ShopkeeperLoreText.Add
+		(
+			"Holy lore"
+		);
+
+		ShopkeeperLoreText.Add
+		(
+			"Undead lore"
+		);
+
+		ShopkeeperLoreText.Add
+		(
+			"Demon lore"
+		);
+
+		ShopkeeperLoreText.Add
+		(
+			"Eldritch lore"
+		);
+	}
+
 
 
     public override void _Ready()
